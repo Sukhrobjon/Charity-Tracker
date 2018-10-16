@@ -18,10 +18,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const Charity = mongoose.model('Charity', {
     organizationName: String,
     description: String,
-    donationAmount: Number
+    donationAmount: String
 });
 // let charities = [
-//     { title: "Great Review", charityTitle: "Batman II" },
+//     { title: "Great charity", charityTitle: "Batman II" },
 //     { title: "Awesome Movie", charityTitle: "Titanic" }
 // ]
 
@@ -43,17 +43,26 @@ app.get('/charities/new', (req, res) => {
     res.render('charities-new', {});
 })
 
-// CREATE
+
 // CREATE
 app.post('/charities', (req, res) => {
-    Charity.create(req.body).then((review) => {
-        console.log(review);
-        res.redirect('/');
+    Charity.create(req.body).then((charity) => {
+        console.log(charity);
+        // res.redirect('/');
+        res.redirect(`/charities/${charity._id}`) // Redirect to charitys/:id
     }).catch((err) => {
         console.log(err.message);
     })
 })
 
+// SHOW
+app.get('/charities/:id', (req, res) => {
+    Charity.findById(req.params.id).then((charity) => {
+        res.render('charities-show', { charity: charity })
+    }).catch((err) => {
+        console.log(err.message);
+    })
+})
 
 // port
 app.listen(3000, () => {

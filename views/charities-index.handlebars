@@ -2,7 +2,7 @@
 <h1>Charities</h1>
 <a href="/charities/new">New Charity</a>
 {{#each charities}}
-<h2>{{this.organizationName}}</h2>
+<h2><a href="/charities/{{this._id}}">{{this.organizationName}}</a></h2>
 <small>Description: {{this.description}}</small> <br>
 <small>Funding Amount Needed: ${{this.donationAmount}}</small>
 {{/each}}
