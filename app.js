@@ -1,20 +1,24 @@
 const express = require('express')
+
 const methodOverride = require('method-override')
 const app = express()
 var exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 // INITIALIZE BODY-PARSER AND ADD IT TO APP
 const bodyParser = require('body-parser');
-
-
-mongoose.connect('mongodb://localhost/charityContracter')
-
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
-
 // The following line must appear AFTER const app = express() and before your routes!
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// mongoose.connect('mongodb://localhost/charityContracter')
+// The following line must appear AFTER const app = express() and before your routes!
+app.use(bodyParser.urlencoded({ extended: true }));
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
+
+
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/charityContracter', {
+    useNewUrlParser: true
+});
 
 // Model
 const Charity = mongoose.model('Charity', {

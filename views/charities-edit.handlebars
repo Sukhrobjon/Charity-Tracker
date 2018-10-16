@@ -1,6 +1,6 @@
 <!-- views/charities-edit.handlebars -->
-
-{{ >charities-form }}
+<form method="POST" action="/charities/{{charity._id}}?_method=PUT">
+    {{> charities-form }}
     </fieldset>
     <!-- BUTTON -->
     <p>
