@@ -12,6 +12,7 @@
     * [X] 100% test coverage of all routes
     * [X] A conventional UI using Bootstrap 4
     * [X] Pushed live to Heroku
+- You can interact with the app [here](https://charity-tracker-mvp-version.herokuapp.com/)
 
 - The following **optional** features are implemented:
 
