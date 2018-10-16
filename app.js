@@ -1,9 +1,11 @@
 const express = require('express')
+const methodOverride = require('method-override')
 const app = express()
 var exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 // INITIALIZE BODY-PARSER AND ADD IT TO APP
 const bodyParser = require('body-parser');
+
 
 mongoose.connect('mongodb://localhost/charityContracter')
 
@@ -24,6 +26,9 @@ const Charity = mongoose.model('Charity', {
 //     { title: "Great charity", charityTitle: "Batman II" },
 //     { title: "Awesome Movie", charityTitle: "Titanic" }
 // ]
+
+// override with POST having ?_method=DELETE or ?_method=PUT
+app.use(methodOverride('_method'))
 
 // INDEX
 app.get('/', (req, res) => {
@@ -62,7 +67,27 @@ app.get('/charities/:id', (req, res) => {
     }).catch((err) => {
         console.log(err.message);
     })
-})
+});
+
+// EDIT
+app.get('/charities/:id/edit', (req, res) => {
+    Charity.findById(req.params.id, function (err, charity) {
+        res.render('charities-edit', { charity: charity });
+    })
+});
+
+
+// UPDATE
+app.put('/charities/:id', (req, res) => {
+    Charity.findByIdAndUpdate(req.params.id, req.body)
+        .then(charity => {
+            res.redirect(`/charities/${charity._id}`)
+        })
+        .catch(err => {
+            console.log(err.message)
+        })
+});
+
 
 // port
 app.listen(3000, () => {

@@ -1,0 +1,28 @@
+<!-- views/partials charities-form.handlebars -->
+
+<form method="POST" action="/charities/{{charity._id}}?_method=PUT">
+    <fieldset>
+        <legend>Edit Charity</legend>
+        <!-- Organization -->
+        <p>
+            <label for="organizationName">New Organization Name</label><br>
+            <input type="text" name="organizationName" value="{{charity.organizationName}}" />
+        </p>
+
+        <!-- Description -->
+        <p>
+            <label for="description-text">Description</label><br>
+            <input id="description-text" type="text" name="description" value="{{charity.description}}" />
+        </p>
+
+        <!-- Donation Amount -->
+        <p>
+            <label for="donationAmount-text">Donation Amount</label><br>
+            <textarea id="donationAmount-text" name="donationAmount" rows="10" />{{charity.donationAmount}}</textarea>
+        </p>
+    </fieldset>
+    <!-- BUTTON -->
+    <p>
+        <button type="submit">Save Charity</button>
+    </p>
+</form>
