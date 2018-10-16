@@ -7,3 +7,9 @@
 <p>{{charity.donationAmount}}</p>
 
 <p><a href="/charities/{{charity._id}}/edit">Edit</a></p>
+<!-- Delete button -->
+<p>
+    <form method="POST" action="/charities/{{charity._id}}?_method=DELETE">
+        <button type="submit">Delete</button>
+    </form>
+</p>

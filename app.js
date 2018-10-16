@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 // The following line must appear AFTER const app = express() and before your routes!
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// mongoose.connect('mongodb://localhost/charityContracter')
+
 // The following line must appear AFTER const app = express() and before your routes!
 app.use(bodyParser.urlencoded({ extended: true }));
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
@@ -91,7 +91,15 @@ app.put('/charities/:id', (req, res) => {
             console.log(err.message)
         })
 });
-
+// DELETE
+app.delete('/charities/:id', function (req, res) {
+    console.log("DELETE charity Organization")
+    Charity.findByIdAndRemove(req.params.id).then((charity) => {
+        res.redirect('/');
+    }).catch((err) => {
+        console.log(err.message);
+    })
+})
 
 // port
 app.listen(3000, () => {
