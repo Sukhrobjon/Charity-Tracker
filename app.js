@@ -2,21 +2,23 @@ const express = require('express')
 const app = express()
 var exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
+// INITIALIZE BODY-PARSER AND ADD IT TO APP
+const bodyParser = require('body-parser');
+
 mongoose.connect('mongodb://localhost/charityContracter')
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
+// The following line must appear AFTER const app = express() and before your routes!
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.get('/', (req, res) => {
-//     res.render('home', { msg: 'Handlebars are Cool!' });
-//     console.log("Handlebars are")
-// })
 
-// OUR MOCK ARRAY OF PROJECTS
+// Model
 const Charity = mongoose.model('Charity', {
-    title: String,
-    charityTitle: String
+    organizationName: String,
+    description: String,
+    donationAmount: Number
 });
 // let charities = [
 //     { title: "Great Review", charityTitle: "Batman II" },
@@ -24,9 +26,6 @@ const Charity = mongoose.model('Charity', {
 // ]
 
 // INDEX
-// app.get('/', (req, res) => {
-//     res.render('charities-index', { charities: charities });
-// });
 app.get('/', (req, res) => {
     Charity.find()
         .then(charities => {
@@ -38,6 +37,23 @@ app.get('/', (req, res) => {
             console.log(err);
         })
 })
+
+// NEW
+app.get('/charities/new', (req, res) => {
+    res.render('charities-new', {});
+})
+
+// CREATE
+// CREATE
+app.post('/charities', (req, res) => {
+    Charity.create(req.body).then((review) => {
+        console.log(review);
+        res.redirect('/');
+    }).catch((err) => {
+        console.log(err.message);
+    })
+})
+
 
 // port
 app.listen(3000, () => {
