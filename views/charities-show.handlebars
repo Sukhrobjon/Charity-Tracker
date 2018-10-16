@@ -1,6 +1,6 @@
 <!-- views/charities-show.handlebars -->
 
-<a href="/">Back to Home</a>
+{{!-- <a href="/">Back to Home</a>
 
 <h1>{{charity.organizationName}}</h1>
 <h2>{{charity.description}}</h2>
@@ -12,4 +12,30 @@
     <form method="POST" action="/charities/{{charity._id}}?_method=DELETE">
         <button type="submit">Delete</button>
     </form>
-</p>
+</p> --}}
+<a href="/">Back to Home</a>
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+
+        <h1>{{charity.organizationName}}</h1>
+        <h2>Description: {{charity.description}}</h2> <br>
+        <h2>Funding Amount Needed: {{charity.donationAmount}}</h2>
+        <p><a href="/charities/{{charity._id}}/edit">Edit</a></p>
+        <p>
+            <form method="POST" action="/charities/{{charity._id}}?_method=DELETE">
+                <button class="btn btn-primary" type="submit">Delete</button>
+            </form>
+        </p>
+        {{!-- <hr>
+
+        <!-- Comment form -->
+        {{> comment-form}}
+        <hr> --}}
+
+        {{!-- <!-- Show Comments -->
+        {{#each comments}}
+        {{> comment}} --}}
+        {{!-- {{/each}} --}}
+
+    </div>
+</div>

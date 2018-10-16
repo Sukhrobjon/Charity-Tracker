@@ -1,23 +1,22 @@
-<!-- views/partials charities-form.handlebars -->
-
-
 <fieldset>
-    <legend>Edit Charity</legend>
-    <!-- Organization -->
-    <p>
-        <label for="organizationName">New Organization Name</label><br>
-        <input type="text" name="organizationName" value="{{charity.organizationName}}" />
-    </p>
 
-    <!-- Description -->
-    <p>
+    <!-- TITLE -->
+    <div class="form-group">
+        <label for="org-title">Name of the Charity Organization</label><br>
+        <input class="form-control" id="org-title" type="text" name="organizationName" value="{{charity.organizationName}}" />
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="form-group">
         <label for="description-text">Description</label><br>
-        <input id="description-text" type="text" name="description" value="{{charity.description}}" />
-    </p>
+        <textarea class="form-control" id="description-text" name="description" rows="10" />{{charity.description}}</textarea>
+    </div>
 
-    <!-- Donation Amount -->
-    <p>
-        <label for="donationAmount-text">Donation Amount</label><br>
-        <textarea id="donationAmount-text" name="donationAmount" rows="10" />{{charity.donationAmount}}</textarea>
-    </p>
+    <!-- DONATION -->
+    <div class="form-group">
+        <label for="donation-need"> Funding Amount Needed</label><br>
+        <input class="form-control" id="donation-need" type="text" name="donationAmount" value="{{charity.donationAmount}}" />
+    </div>
+
+
 </fieldset>

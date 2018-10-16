@@ -20,9 +20,6 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/charityContract
     useNewUrlParser: true
 });
 
-
-
-
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 }));

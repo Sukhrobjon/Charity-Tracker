@@ -7,9 +7,9 @@ const should = chai.should();
 const Charity = require('../models/charity');
 
 const sampleCharity =     {
-    "organizationName": "Super Sweet Charity",
-    "description": "La La Land",
-    "donationAmount": "A great charity of a lovely movie."
+    "organizationName": "Deaf people",
+    "description": "mortgage support",
+    "donationAmount": "$100000"
 }
 
 chai.use(chaiHttp);

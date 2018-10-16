@@ -1,8 +1,11 @@
-<!-- charities-index -->
-<h1>Charities</h1>
-<a href="/charities/new">New Charity</a>
-{{#each charities}}
-<h2><a href="/charities/{{this._id}}">{{this.organizationName}}</a></h2>
-<small>Description: {{this.description}}</small> <br>
-<small>Funding Amount Needed: ${{this.donationAmount}}</small>
-{{/each}}
+{{!-- charities-index.handlebars --}}
+<h1>Organizations</h1>
+<div class="row">
+    {{#each charity}}
+    <div class="col-sm-3">
+        <h2><a href="/charities/{{this._id}}">{{this.organizationName}}</a></h2>
+        <small>Description: {{this.description}}</small> <br>
+        <small>Funding Amount Needed: {{this.donationAmount}}</small>
+    </div>
+    {{/each}}
+</div>
