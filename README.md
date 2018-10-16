@@ -8,10 +8,10 @@
 
     * [X] Written in JavaScript using Node.js, Express.js, and MongoDB.
     * [X] Written in MVC with separate files for each concern.
-    * [ ] CRUD >=2 Resources and associate them
-    * [ ] 100% test coverage of all routes
-    * [ ] A conventional UI using Bootstrap 4
-    * [ ] Pushed live to Heroku
+    * [X] CRUD >=2 Resources and associate them
+    * [X] 100% test coverage of all routes
+    * [X] A conventional UI using Bootstrap 4
+    * [X] Pushed live to Heroku
 
 - The following **optional** features are implemented:
 
