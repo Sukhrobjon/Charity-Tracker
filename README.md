@@ -19,4 +19,6 @@
     * [ ] AJAX requests for POST/PUT/DELETE requests - Server-side rendering for GET requests.
     * [ ] No jQuery
     * [ ] Use an external API
+
+- You can check out the [documentatoin](https://sukhrobjon.github.io/Charity-Tracker/) here
     
