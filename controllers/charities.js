@@ -5,15 +5,7 @@ module.exports = function (app) {
 
     // INDEX
     app.get('/', (req, res) => {
-        Charity.find()
-            .then(charity => {
-                res.render('charities-index', {
-                    charity: charity
-                });
-            })
-            .catch(err => {
-                console.log(err);
-            })
+        return res.redirect("page/1")
     })
 
     // Pagination
@@ -26,12 +18,13 @@ module.exports = function (app) {
             // intNumber = 1
             return res.redirect("/page/1")
         }
-        const limitPage = 6
+        const limitPage = 3
         Charity.find().skip((intNumber - 1) * limitPage).limit(limitPage)
             .then(charity => {
+                    // consider to check the end of the page has exactly number of limit
                     res.render('charities-index', {
-                        charity: charity, previous: req.params.number - 1, 
-                            next: req.params.number + 1
+                        charity: charity, previous: intNumber - 1, 
+                            next: intNumber + 1, end: !(charity.length < limitPage)
                     });
                 })
                 .catch(err => {

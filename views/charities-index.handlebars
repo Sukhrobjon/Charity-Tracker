@@ -15,9 +15,12 @@
 <nav aria-label="">
     <ul class="pager">
         {{#if previous}}
-            <li><a href=`/page/${previous}`>Previous</a></li>
+            <li><a href="/page/{{previous}}">Previous</a></li>
         {{/if}}
         
-        <li><a href=`/page/${next}`>Next</a></li>
+        {{#if end}}
+            <li><a href="/page/{{next}}">Next</a></li>
+        {{/if}}
+        
     </ul>
 </nav>
