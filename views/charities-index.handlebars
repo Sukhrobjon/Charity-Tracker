@@ -6,7 +6,12 @@
         <h2><a href="/charities/{{this._id}}">{{this.organizationName}}</a></h2>
         <small>Description: {{this.description}}</small> <br>
         <small>Amount of Donation: {{this.donationAmount}}</small>
+        {{#if this.avatarUrl}}
+            <img src=(this.avatarUrl + '-standard.') alt="image">
+    
+        {{/if}}
     </div>
+
     {{/each}}
     
 </div>

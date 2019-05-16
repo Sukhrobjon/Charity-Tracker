@@ -13,6 +13,9 @@
                 <button class="btn btn-primary" type="submit">Delete</button>
             </form>
         </p>
+        {{#if charity.avatarUrl}}
+            <img src={{charity.avatarUrl + '-square.'}} alt="image">
+        {{/if}}
         
         <hr>
         <!-- Comment form -->

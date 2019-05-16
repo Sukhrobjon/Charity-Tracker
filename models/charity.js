@@ -4,5 +4,9 @@ const mongoose = require('mongoose');
 module.exports = mongoose.model('Charity', {
             organizationName: String,
             description: String,
-            donationAmount: String
+            donationAmount: String,
+            avatarUrl: {
+                type: String,
+                required: true
+            }
 })
