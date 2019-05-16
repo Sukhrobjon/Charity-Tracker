@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 // INITIALIZE BODY-PARSER AND ADD IT TO APP
 const bodyParser = require('body-parser');
 const app = express()
+require('dotenv').config()
 const port = process.env.PORT || 3000;
 var exphbs = require('express-handlebars');
 

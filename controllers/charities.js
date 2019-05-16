@@ -1,5 +1,34 @@
 const Charity = require('../models/charity.js');
 const Comment = require('../models/comment.js');
+require('dotenv').config()
+
+// UPLOADING TO AWS S3
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
+const Upload = require('s3-uploader');
+console.log("bucket name: " + process.env.S3_BUCKET)
+const client = new Upload(process.env.S3_BUCKET, {
+    aws: {
+        path: 'charity/avatar',
+        region: process.env.S3_REGION,
+        acl: 'public-read',
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+    },
+    cleanup: {
+        versions: true,
+        original: true
+    },
+    versions: [{
+        maxWidth: 400,
+        aspect: '16:10',
+        suffix: '-standard'
+    }, {
+        maxWidth: 300,
+        aspect: '1:1',
+        suffix: '-square'
+    }]
+});
 
 module.exports = function (app) {
 
@@ -38,26 +67,43 @@ module.exports = function (app) {
     })
 
 
-    // CREATE
-    app.post('/charities', (req, res) => {
-        Charity.create(req.body).then((charity) => {
-            console.log(charity);
-            res.redirect(`/charities/${charity._id}`);
-        }).catch((err) => {
-            console.log(err.message);
-        })
-    })
-
-    // SHOW
-    // app.get('/charities/:id', (req, res) => {
-    //     Charity.findById(req.params.id).then((charity) => {
-
-    //         res.render('charities-show', { charity: charity })
+    // // CREATE
+    // app.post('/charities', (req, res) => {
+    //     Charity.create(req.body).then((charity) => {
+    //         console.log(charity);
+    //         res.redirect(`/charities/${charity._id}`);
     //     }).catch((err) => {
     //         console.log(err.message);
     //     })
     // })
 
+    // CREATE PET
+    app.post('/charities', upload.single('avatar'), (req, res, next) => {
+        var charity = new Charity(req.body);
+        charity.save(function (err) {
+        if (req.file) {
+            client.upload(req.file.path, {}, function (err, versions, meta) {
+            if (err) { return res.status(400).send({ err: err }) };
+
+            versions.forEach(function (image) {
+                var urlArray = image.url.split('-');
+                urlArray.pop();
+                var url = urlArray.join('-');
+                charity.avatarUrl = url;
+                charity.save();
+            });
+
+            res.send({ charity: charity });
+            });
+        } else {
+            res.send({ charity: charity });
+        }
+        })
+    })
+
+
+    
+    // SHOW ID
     app.get('/charities/:id', (req, res) => {
         // find review
         Charity.findById(req.params.id).then(charity => {
