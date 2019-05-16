@@ -8,7 +8,7 @@ module.exports = function (app) {
         return res.redirect("page/1")
     })
 
-    // Pagination
+    // PAGINATION
     app.get('/page/:number', (req, res) => {
         intNumber = Number(req.params.number)
         if(isNaN(intNumber)){
