@@ -77,7 +77,7 @@ module.exports = function (app) {
     //     })
     // })
 
-    // CREATE PET
+    // CREATE Charity
     app.post('/charities', upload.single('avatar'), (req, res, next) => {
         var charity = new Charity(req.body);
         charity.save(function (err) {
@@ -85,14 +85,13 @@ module.exports = function (app) {
             client.upload(req.file.path, {}, function (err, versions, meta) {
             if (err) { return res.status(400).send({ err: err }) };
 
-            versions.forEach(function (image) {
-                var urlArray = image.url.split('-');
-                urlArray.pop();
-                var url = urlArray.join('-');
-                charity.avatarUrl = url;
-                charity.save();
-            });
-
+            // let imgUrl = versions[0].url.split('-');
+            var urlArray = versions[0].url.split('-');
+            urlArray.pop();
+            var url = urlArray.join('-');
+            charity.avatarUrl = url;
+            charity.save();
+           
             res.send({ charity: charity });
             });
         } else {
