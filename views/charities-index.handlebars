@@ -2,10 +2,22 @@
 <h1>Organizations</h1>
 <div class="row">
     {{#each charity}}
-    <div class="col-sm-3">
+    <div class="col-sm-4">
         <h2><a href="/charities/{{this._id}}">{{this.organizationName}}</a></h2>
         <small>Description: {{this.description}}</small> <br>
         <small>Amount of Donation: {{this.donationAmount}}</small>
     </div>
     {{/each}}
+    
 </div>
+
+{{!-- PAGINATION --}}
+<nav aria-label="">
+    <ul class="pager">
+        {{#if previous}}
+            <li><a href=`/page/${previous}`>Previous</a></li>
+        {{/if}}
+        
+        <li><a href=`/page/${next}`>Next</a></li>
+    </ul>
+</nav>

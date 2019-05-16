@@ -16,6 +16,29 @@ module.exports = function (app) {
             })
     })
 
+    // Pagination
+    app.get('/page/:number', (req, res) => {
+        intNumber = Number(req.params.number)
+        if(isNaN(intNumber)){
+            return res.redirect("/page/1")
+            // intNumber = 1
+        } else if(intNumber < 1){
+            // intNumber = 1
+            return res.redirect("/page/1")
+        }
+        const limitPage = 6
+        Charity.find().skip((intNumber - 1) * limitPage).limit(limitPage)
+            .then(charity => {
+                    res.render('charities-index', {
+                        charity: charity, previous: req.params.number - 1, 
+                            next: req.params.number + 1
+                    });
+                })
+                .catch(err => {
+                    console.log(err);
+            })
+    })
+
     // NEW
     app.get('/charities/new', (req, res) => {
         res.render('charities-new', {});
