@@ -93,4 +93,21 @@ module.exports = function (app) {
         })
     })
 
+    // SEARCH organization by name
+    app.get('/search', (req, res) => {
+        const organization = new RegExp(req.query.organization, 'i')
+
+        Charity.find({$or:[
+            {
+                'organizationName': organization
+            },
+            {
+                'description': organization
+            }
+
+        ]}).exec((err, charity) => {
+            res.render('charities-index', { charity });
+        })
+    });
+
 }

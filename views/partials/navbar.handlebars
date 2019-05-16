@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -8,5 +9,11 @@
         <div class="pull-right">
             <a href="/charities/new" class="btn btn-default navbar-btn">New Organization</a>
         </div>
+        <form action='/search' class="navbar-form navbar-left">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search" name="organization">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
     </div>
 </nav>
