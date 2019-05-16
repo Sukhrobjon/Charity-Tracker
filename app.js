@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express()
 require('dotenv').config()
+const path = require('path');
 const port = process.env.PORT || 3000;
 var exphbs = require('express-handlebars');
 
@@ -25,6 +26,7 @@ app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 }));
 app.set('view engine', 'handlebars');
+app.use(express.static(path.join(__dirname, 'public')));
 
 charities(app);
 comments(app);

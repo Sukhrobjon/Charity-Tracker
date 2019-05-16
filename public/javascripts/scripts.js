@@ -13,7 +13,7 @@ if (document.querySelector('#new-org')) {
             })
             .then(function (response) {
                 console.log("response: " + response)
-                // window.location.replace(`/charities/${response.data.charity._id}`);
+                window.location.replace(`/charities/${response.data.charity._id}`);
             })
             .catch(function (error) {
                 // const alert = document.getElementById('alert')
