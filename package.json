@@ -17,13 +17,14 @@
     "event-stream": "^4.0.1",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.0",
+    "express-validator": "^6.2.0",
     "fsevents": "^2.0.6",
     "handlebars": "^4.4.3",
     "install": "^0.12.2",
     "method-override": "^3.0.0",
     "mongoose": "^5.3.4",
     "multer": "^1.4.1",
-    "nodemon": "^1.18.4",
+    "nodemon": "^1.19.3",
     "s3-uploader": "^2.0.3"
   }
 }

@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 // INITIALIZE BODY-PARSER AND ADD IT TO APP
 const bodyParser = require('body-parser');
 const app = express()
+const { check, validationResult } = require('express-validator');
 require('dotenv').config()
 const path = require('path');
 const port = process.env.PORT || 3000;

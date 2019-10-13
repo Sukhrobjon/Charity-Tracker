@@ -1,5 +1,7 @@
 const Charity = require('../models/charity.js');
 const Comment = require('../models/comment.js');
+const { check, validationResult } = require('express-validator');
+
 require('dotenv').config()
 
 // UPLOADING TO AWS S3
@@ -67,18 +69,9 @@ module.exports = function (app) {
     })
 
 
-    // // CREATE
-    // app.post('/charities', (req, res) => {
-    //     Charity.create(req.body).then((charity) => {
-    //         console.log(charity);
-    //         res.redirect(`/charities/${charity._id}`);
-    //     }).catch((err) => {
-    //         console.log(err.message);
-    //     })
-    // })
-
     // CREATE Charity
     app.post('/charities', upload.single('avatar'), (req, res, next) => {
+        
         var charity = new Charity(req.body);
         charity.save(function (err) {
         if (req.file) {
