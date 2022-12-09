@@ -15,7 +15,7 @@
     "chai-http": "^4.2.0",
     "dotenv": "^8.0.0",
     "event-stream": "^4.0.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-handlebars": "^3.0.0",
     "express-validator": "^6.2.0",
     "fsevents": "^2.0.6",
